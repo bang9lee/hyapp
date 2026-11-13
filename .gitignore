@@ -1,0 +1,31 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/app/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# 서명 키 · 비밀값
+*.keystore
+*.jks
+keystore.properties
+secrets.properties
+/keystore/
+
+# 내부 작업 문서 (공개 저장소에 올리지 않음)
+/docs/
+/시나리오.md
+/scenario.md
+/.claude/
+
+# Pleos 공식 디자인 원본 (.fig·렌더 등, 재배포 금지 자료)
+/design/
+
+# 공모전 제출 서류 (개인정보 포함)
+/submission/
+*.docx
+*.pdf

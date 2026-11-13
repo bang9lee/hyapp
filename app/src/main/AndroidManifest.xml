@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature
+        android:name="android.hardware.type.automotive"
+        android:required="true" />
+
+    <!-- AAOS 표준 Car API: 기어·주차 브레이크(POWERTRAIN), 차속(SPEED, 런타임 허용 필요) -->
+    <uses-permission android:name="android.car.permission.CAR_POWERTRAIN" />
+    <uses-permission android:name="android.car.permission.CAR_SPEED" />
+
+    <!-- Vehicle SDK 읽기: 방향지시등(LIGHTS)·브레이크(DRIVE)·창문/와이퍼(WINDOWS)·공조/핸들 열선(CLIMATE) -->
+    <uses-permission android:name="pleos.car.permission.CAR_DRIVE" />
+    <uses-permission android:name="pleos.car.permission.CAR_LIGHTS" />
+    <uses-permission android:name="pleos.car.permission.CAR_WINDOWS" />
+    <uses-permission android:name="pleos.car.permission.CAR_CLIMATE" />
+    <uses-permission android:name="pleos.car.permission.CAR_SAFETY" />
+    <!-- 주차 브레이크 경고등 구독(registerTelltales). 에뮬레이터는 AAOS PARKING_BRAKE_ON이 늘 false라 이 신호로 확인 -->
+    <uses-permission android:name="pleos.car.permission.PRIVATE_CAR_SAFETY" />
+
+    <!-- Vehicle SDK 제어 (연출). 창문 '위치'는 절대 쓰지 않는다 — CONTROL_CAR_WINDOWS는 SDK상 와이퍼 쓰기에 필요 -->
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_WINDOWS" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_CLIMATE" />
+    <!-- 무드등 쓰기: 문서는 CAR_LIGHTS로 표기하지만 실제로는 이 권한이 없으면 SecurityException -->
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_LIGHTS" />
+
+    <!-- 음성 -->
+    <uses-permission android:name="pleos.car.permission.TTS_SERVICE" />
+    <uses-permission android:name="pleos.car.permission.STT_SERVICE" />
+
+    <application
+        android:name=".ParkingRoomApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ParkingRoom">
+        <!-- CCP 개발 가이드: 게임 앱은 CCP(로터리) 미지원 예외. 모든 조작은 터치·음성·차량 조작으로 완결된다 -->
+        <meta-data
+            android:name="com.hmg.rotary.ROTARY_SUPPORTED"
+            android:value="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.ParkingRoom">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

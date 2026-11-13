@@ -1,0 +1,146 @@
+{
+  "id": "hacked_car",
+  "mode": "adult",
+  "title": "해킹된 차",
+  "subtitle": "해커 AI NULL이 차를 장악했어요. 보안 구역 4곳에서 코드 조각을 찾아 차를 되찾으세요.",
+  "levels": [
+    { "key": "easy", "label": "초보", "hint": "auto", "hintAfterSec": 60, "timeLimitSec": 1200,
+      "description": "20분 · 막히면 보안팀이 자동으로 힌트 · 틀리면 10초 벌점" },
+    { "key": "normal", "label": "중급", "hint": "ask", "maxHints": 3, "timeLimitSec": 900,
+      "description": "15분 · 보안팀 힌트 3번 · 틀리면 20초 벌점" },
+    { "key": "hard", "label": "상급", "hint": "ask", "maxHints": 1, "timeLimitSec": 720,
+      "description": "12분 · 힌트 1번 · 틀리면 30초 벌점 · 마스터 코드 반전" }
+  ],
+  "intro": "접속 완료. 이 차는 이제 내 거야. 마스터 코드를 찾을 수 있으면 찾아봐. 시간은 많지 않을걸?",
+  "introTeam": "보안팀이다. 차의 보안 구역 네 곳에 코드 조각이 하나씩 숨어 있다. 화면의 차 그림에서 아무 구역이나 눌러서 시작해.",
+  "introScene": { "durationMs": 9000, "actions": [
+    { "at": 0, "do": "caption", "text": "시스템이 외부에서 접속되었습니다" },
+    { "at": 0, "do": "sfx", "name": "glitch", "volume": 0.8 },
+    { "at": 0, "do": "ambient", "color": "#000000", "brightness": 0 },
+    { "at": 600, "do": "flash", "color": "#FF1744", "count": 3, "periodMs": 500 },
+    { "at": 2200, "do": "sfx", "name": "glitch", "volume": 0.7 },
+    { "at": 2300, "do": "wiperOnce" },
+    { "at": 2600, "do": "coldBlast", "durationMs": 4000, "backFan": 3 },
+    { "at": 3000, "do": "ambient", "color": "#D50000", "brightness": 60 },
+    { "at": 3000, "do": "caption", "text": "NULL" }
+  ] },
+  "pieces": [
+    {
+      "id": "light", "title": "조명 보안", "subtitle": "색 신호", "color": "#2979FF",
+      "riddle": "내 신호를 읽을 수 있으면 읽어 봐. 무드등이 하는 말, 들려?",
+      "hints": [
+        "무드등이 색마다 다른 횟수로 깜빡인다. NULL이 싫어하는 색이 몇 번 깜빡였는지 세어 봐.",
+        "놓쳤으면 '신호 다시 보기'를 눌러. 숫자는 말해도 되고 키패드로 눌러도 된다."
+      ],
+      "puzzle": {
+        "type": "blinkCode",
+        "default": { "colors": 2 },
+        "normal": { "colors": 3 },
+        "hard": { "colors": 4 }
+      }
+    },
+    {
+      "id": "climate", "title": "공조 보안", "subtitle": "온도 금고", "color": "#00B8D4",
+      "riddle": "춥지? 에어컨은 이제 내 거야. 되찾고 싶으면 금고 다이얼을 정확히 맞춰 봐.",
+      "hints": [
+        "화면에 금고 다이얼 값이 있다. 차의 공조 버튼으로 운전석 온도와 바람 세기를 그 값에 맞춰.",
+        "온도는 0.5도 단위, 바람은 단계까지 정확해야 열린다."
+      ],
+      "puzzle": {
+        "type": "climateLock",
+        "default": { "rounds": 1 },
+        "normal": { "rounds": 2 },
+        "hard": { "rounds": 3 }
+      }
+    },
+    {
+      "id": "window", "title": "창문 보안", "subtitle": "창문 비밀번호", "color": "#7C4DFF",
+      "riddle": "창문 비밀번호는 내가 잠깐만 보여 줄 거야. 잘 기억해 둬.",
+      "hints": [
+        "막대 네 개의 높이가 창문 네 개의 열림 정도다. 앞 왼쪽, 앞 오른쪽, 뒤 왼쪽, 뒤 오른쪽 순서야.",
+        "같이 탔다면 각자 자기 창문을 맡아. 막대가 사라지면 '다시 보기'를 눌러."
+      ],
+      "puzzle": {
+        "type": "windowCode",
+        "default": { "tolerance": 1, "bars": "always" },
+        "normal": { "tolerance": 0, "bars": "flicker" },
+        "hard": { "tolerance": 0, "bars": "flash" }
+      }
+    },
+    {
+      "id": "drive", "title": "구동 보안", "subtitle": "패턴 자물쇠", "color": "#FF6D00",
+      "riddle": "내 신호를 똑같이 따라 하면 열어 줄게. 한 번이라도 틀리면… 알지?",
+      "hints": [
+        "보로롱은 왼쪽 깜빡이, 딩동은 오른쪽 깜빡이, 쿵은 브레이크다.",
+        "깜빡이를 켰다가 매번 가운데로 돌려놓고 다음 신호를 넣어."
+      ],
+      "puzzle": {
+        "type": "patternLock",
+        "default": { "rounds": [3, 4], "brake": 0.2 },
+        "normal": { "rounds": [3, 4, 5], "brake": 0.25 },
+        "hard": { "rounds": [4, 5, 6], "brake": 0.3 }
+      }
+    }
+  ],
+  "final": {
+    "id": "master", "title": "마스터 코드", "subtitle": "최종 해제", "color": "#00E676",
+    "riddle": {
+      "default": "코드 조각을 다 모았다고? 그래도 마지막 문은 못 열걸.",
+      "hard": "코드 조각을 다 모았다고? 하지만 내 금고는 모든 걸 거꾸로 센다."
+    },
+    "hints": ["모은 코드 조각 네 자리를 순서대로 말하거나 입력해.", "상급이라면 NULL의 말을 다시 떠올려 봐. 거꾸로."],
+    "puzzle": {
+      "type": "masterCode",
+      "default": { "reverse": false },
+      "hard": { "reverse": true }
+    }
+  },
+  "attacks": [
+    { "durationMs": 3500, "actions": [
+      { "at": 0, "do": "flash", "color": "#FF1744", "count": 3, "periodMs": 450 },
+      { "at": 0, "do": "say", "text": "아직도 못 찾았어? 하하.", "voice": "null" }
+    ] },
+    { "durationMs": 3500, "actions": [
+      { "at": 0, "do": "wiperOnce" },
+      { "at": 0, "do": "say", "text": "와이퍼는 내 마음대로야.", "voice": "null" }
+    ] },
+    { "durationMs": 6000, "actions": [
+      { "at": 0, "do": "coldBlast", "durationMs": 5000, "backFan": 3 },
+      { "at": 0, "do": "say", "text": "좀 춥게 해 줄까?", "voice": "null" }
+    ] }
+  ],
+  "counterScene": { "durationMs": 2600, "actions": [
+    { "at": 0, "do": "flash", "color": "#FF1744", "count": 3, "periodMs": 500 },
+    { "at": 0, "do": "say", "text": "틀렸어. 시간이나 더 가져갈게.", "voice": "null" }
+  ] },
+  "endingScene": { "durationMs": 16000, "actions": [
+    { "at": 0, "do": "caption", "text": "보안 시스템 복구 중" },
+    { "at": 0, "do": "sfx", "name": "glitch", "volume": 0.6 },
+    { "at": 800, "do": "ambient", "color": "#FFFFFF", "brightness": 100 },
+    { "at": 1200, "do": "sfx", "name": "boot" },
+    { "at": 2000, "do": "ambient", "color": "#00BFA5", "brightness": 80 },
+    { "at": 2000, "do": "temp", "celsius": 24 },
+    { "at": 2000, "do": "fan", "level": 2 },
+    { "at": 2400, "do": "caption", "text": "복구 완료 · 다시 당신의 차입니다" },
+    { "at": 4000, "do": "wiperOnce" },
+    { "at": 4500, "do": "sfx", "name": "celebrate" },
+    { "at": 5000, "do": "steeringHeat", "level": 1 }
+  ] },
+  "endingLine": "시스템 복구 완료. NULL을 몰아냈다. 다시 당신의 차입니다. 수고했어.",
+  "failScene": { "durationMs": 6000, "actions": [
+    { "at": 0, "do": "caption", "text": "시간 초과 · 차를 빼앗겼습니다" },
+    { "at": 0, "do": "sfx", "name": "glitch", "volume": 0.8 },
+    { "at": 0, "do": "flash", "color": "#D50000", "count": 4, "periodMs": 500 }
+  ] },
+  "failLine": "시간 끝. 이 차는 이제 영원히 내 거야. …농담이야. 다음엔 더 빨리 와.",
+  "texts": {
+    "pieceFound": "코드 조각 확보. 숫자는 {digit}. 남은 구역은 {left}곳이다.",
+    "allFound": "코드 조각 네 개를 모두 찾았다. 마스터 코드 구역이 열렸다.",
+    "noHints": "보안팀이다. 더 줄 수 있는 정보가 없다. 스스로 풀어야 해.",
+    "counterText": "NULL의 반격",
+    "attackText": "NULL의 기습",
+    "penalty_easy": "10",
+    "penalty_normal": "20",
+    "penalty_hard": "30"
+  }
+}

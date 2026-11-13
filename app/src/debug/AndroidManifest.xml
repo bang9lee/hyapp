@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 디버그 빌드 전용: 설정 › 개발자 메뉴 › 차량 기능 확인(1단계 점검 도구)이 시트·미러·에너지까지 읽어 보기 때문에 필요.
+     출시(release) APK에는 들어가지 않는다. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="pleos.car.permission.CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CAR_MIRRORS" />
+    <uses-permission android:name="pleos.car.permission.CAR_ENERGY" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_SEATS" />
+    <uses-permission android:name="pleos.car.permission.CONTROL_CAR_MIRRORS" />
+</manifest>
