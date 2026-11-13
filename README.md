@@ -229,4 +229,4 @@ python -X utf8 tools/game_test/e2e.py <결과폴더>
 
 ---
 
-© TodaysStudio. 차 렌더와 디자인 수치는 Pleos 디자인 가이드의 공식 에셋을 Pleos Connect 앱 제작 목적으로 사용했습니다.
+© Today's Studio. 차 렌더와 디자인 수치는 Pleos 디자인 가이드의 공식 에셋을 Pleos Connect 앱 제작 목적으로 사용했습니다.
